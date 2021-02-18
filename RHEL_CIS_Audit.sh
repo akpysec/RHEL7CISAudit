@@ -18,6 +18,7 @@ echo "--------------------------------------------------------------------------
 echo "1.2.2 Ensure gpgcheck is globally activated (Scored)" >> SEC_AUDIT_RHEL7.txt 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 grep ^gpgcheck /etc/yum.repos.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 grep ^gpgcheck /etc/yum.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
@@ -54,6 +55,7 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.3.2 Ensure filesystem integrity is regularly checked (Scored)" >> SEC_AUDIT_RHEL7.txt 
 crontab -u root -l | grep aide | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 grep -r aide /etc/cron.* /etc/crontab | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -67,13 +69,17 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.4.1 Ensure permissions on bootloader config are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "/boot/grub2/grub.cfg:" >> SEC_AUDIT_RHEL7.txt
 stat /boot/grub2/grub.cfg | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "/boot/grub2/user.cfg" >> SEC_AUDIT_RHEL7.txt
 stat /boot/grub2/user.cfg | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.4.2 Ensure bootloader password is set (Scored)" >> SEC_AUDIT_RHEL7.txt 
 grep "^GRUB2_PASSWORD" /boot/grub2/grub.cfg | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 grep "^GRUB2_PASSWORD" /boot/grub2/user.cfg | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -81,6 +87,7 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.4.3 Ensure authentication required for single user mode (Scored)" >> SEC_AUDIT_RHEL7.txt 
 grep /sbin/sulogin /usr/lib/systemd/system/rescue.service ExecStart=-/bin/sh -c "/sbin/sulogin; /usr/bin/systemctl --fail --no-block default" | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 grep /sbin/sulogin /usr/lib/systemd/system/emergency.service ExecStart=-/bin/sh -c "/sbin/sulogin; /usr/bin/systemctl --fail --no-block default" | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -95,7 +102,9 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.5.1 Ensure core dumps are restricted (Scored)" >> SEC_AUDIT_RHEL7.txt 
 grep "hard core" /etc/security/limits.conf /etc/security/limits.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 sysctl fs.suid_dumpable | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 grep "fs\.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -109,6 +118,7 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.5.3 Ensure address space layout randomization (ASLR) is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 sysctl kernel.randomize_va_space | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 grep "kernel\.randomize_va_space" /etc/sysctl.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -140,6 +150,7 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.6.1.2 Ensure the SELinux state is enforcing (Scored)" >> SEC_AUDIT_RHEL7.txt 
 grep SELINUX=enforcing /etc/selinux/config | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 sestatus | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -147,6 +158,7 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.6.1.3 Ensure SELinux policy is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 grep SELINUXTYPE=targeted /etc/selinux/config | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 sestatus | grep "Loaded policy name" | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -171,7 +183,7 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.6.2 Ensure SELinux is installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
-rpm -q libselinux  | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+rpm -q libselinux | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
@@ -182,27 +194,88 @@ echo "1.7 Warning Banners" >> SEC_AUDIT_RHEL7.txt
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.1 Command Line Warning Banners" >> SEC_AUDIT_RHEL7.txt 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.1.1 Ensure message of the day is configured properly (Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "Verify that the contents match corporate policy:" >> SEC_AUDIT_RHEL7.txt 
+cat /etc/motd | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No MOTD Banner Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Verify no results are returned:" >> SEC_AUDIT_RHEL7.txt 
+egrep '(\\v|\\r|\\m|\\s)' /etc/motd | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.1.2 Ensure local login warning banner is configured properly (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "Verify that the contents match corporate policy:" >> SEC_AUDIT_RHEL7.txt 
+cat /etc/issue | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No MOTD Banner Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Verify no results are returned:" >> SEC_AUDIT_RHEL7.txt 
+egrep '(\\v|\\r|\\m|\\s)' /etc/issue | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.1.3 Ensure remote login warning banner is configured properly (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "Verify that the contents match corporate policy:" >> SEC_AUDIT_RHEL7.txt 
+cat /etc/issue.net | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No MOTD Banner Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Verify no results are returned:" >> SEC_AUDIT_RHEL7.txt 
+egrep '(\\v|\\r|\\m|\\s)' /etc/issue.net | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.1.4 Ensure permissions on /etc/motd are configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "Check output to match:" >> SEC_AUDIT_RHEL7.txt 
+echo "Access: (0644/-rw-r--r--)  Uid: (	0/	root)	Gid: (	0/	root)" >> SEC_AUDIT_RHEL7.txt 
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Hosts Output:" >> SEC_AUDIT_RHEL7.txt
+stat /etc/motd | grep "Access" | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.1.5 Ensure permissions on /etc/issue are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "Check output to match:" >> SEC_AUDIT_RHEL7.txt 
+echo "Access: (0644/-rw-r--r--)  Uid: (	0/	root)	Gid: (	0/	root)" >> SEC_AUDIT_RHEL7.txt 
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Hosts Output:" >> SEC_AUDIT_RHEL7.txt
+stat /etc/issue | grep "Access" | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.1.6 Ensure permissions on /etc/issue.net are configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "Check output to match:" >> SEC_AUDIT_RHEL7.txt 
+echo "Access: (0644/-rw-r--r--)  Uid: (	0/	root)	Gid: (	0/	root)" >> SEC_AUDIT_RHEL7.txt 
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Hosts Output:" >> SEC_AUDIT_RHEL7.txt
+stat /etc/issue.net | grep "Access" | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "1.7.2 Ensure GDM login banner is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-
+echo "If GDM is installed on the system verify the banner-message-enable and banner-message-text options" >> SEC_AUDIT_RHEL7.txt
+echo "are configured in one of the files in the /etc/dconf/db/gdm.d/ directory:" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+which -a gdb | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+locate -eb '\gdb' | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "1.8 Ensure updates, patches, and additional security software are installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "1.8 Ensure updates, patches, and additional security software are installed (Scored)" >> SEC_AUDIT_RHEL7.txt
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+yum check-update --security >> SEC_AUDIT_RHEL7.txt 
+echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 
 
@@ -215,76 +288,183 @@ echo "**************************************************************************
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "2.1 inetd Services" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "2.1.1-2.1.6 Ensure chargen, daytime, discard, echo, time services & tftp are not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "Verify next parameters are off or missing:" >> SEC_AUDIT_RHEL7.txt
+echo "chargen-dgram, chargen-stream" >> SEC_AUDIT_RHEL7.txt
+echo "daytime-dgram, daytime-stream" >> SEC_AUDIT_RHEL7.txt
+echo "discard-dgram, discard-stream" >> SEC_AUDIT_RHEL7.txt
+echo "echo-dgram, echo-stream" >> SEC_AUDIT_RHEL7.txt
+echo "time-dgram, time-stream" >> SEC_AUDIT_RHEL7.txt
+echo "tftp" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+chkconfig --list| grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
-
-
-echo "2.1.1 Ensure chargen services are not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "2.1.2 Ensure daytime services are not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "2.1.3 Ensure discard services are not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "2.1.4 Ensure echo services are not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "2.1.5 Ensure time services are not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "2.1.6 Ensure tftp server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.1.7 Ensure xinetd is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-
+echo "" >> SEC_AUDIT_RHEL7.txt
+cat /etc/xinetd.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+status xinetd.service | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+systemctl is-enabled | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "2.2 Special Purpose Services" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.1 Time Synchronization" >> SEC_AUDIT_RHEL7.txt 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+rpm -q ntp
+rpm -q chrony
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.1.1 Ensure time synchronization is in use (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.1.2 Ensure ntp is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.1.3 Ensure chrony is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.2 Ensure X Window System is not installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.3 Ensure Avahi Server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.4 Ensure CUPS is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.5 Ensure DHCP Server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.6 Ensure LDAP server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.7 Ensure NFS and RPC are not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.8 Ensure DNS Server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.9 Ensure FTP Server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.10 Ensure HTTP server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.11 Ensure IMAP and POP3 server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.12 Ensure Samba is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.13 Ensure HTTP Proxy Server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.14 Ensure SNMP Server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.15 Ensure mail transfer agent is configured for local-only mode (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.16 Ensure NIS Server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.17 Ensure rsh server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.18 Ensure talk server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.19 Ensure telnet server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.20 Ensure tftp server is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.2.21 Ensure rsync service is not enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 
 
@@ -652,6 +832,7 @@ echo "6.2.17 Ensure no duplicate GIDs exist (Scored)" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.18 Ensure no duplicate user names exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
 echo "6.2.19 Ensure no duplicate group names exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
 
 
 
