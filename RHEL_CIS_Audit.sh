@@ -526,211 +526,6 @@ rpm -q openldap-clients | grep . >> SEC_AUDIT_RHEL7.txt || echo 'LDAP Client is 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
-
-
-echo "**************************************************************************************************************************" >> SEC_AUDIT_RHEL7.txt 
-echo "3 Network Configuration" >> SEC_AUDIT_RHEL7.txt
-echo "**************************************************************************************************************************" >> SEC_AUDIT_RHEL7.txt 
-
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "3.1 Network Parameters (Host Only)" >> SEC_AUDIT_RHEL7.txt 
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.1.1 Ensure IP forwarding is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-sysctl net.ipv4.ip_forward | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
-grep "net\.ipv4\.ip_forward" /etc/sysctl.conf /etc/sysctl.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.1.2 Ensure packet redirect sending is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-sysctl net.ipv4.conf.all.send_redirects | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-sysctl net.ipv4.conf.default.send_redirects | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-grep "net\.ipv4\.conf\.all\.send_redirects" /etc/sysctl.conf /etc/sysctl.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-grep "net\.ipv4\.conf\.default\.send_redirects" /etc/sysctl.conf /etc/sysctl.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "3.2 Network Parameters (Host and Router)" >> SEC_AUDIT_RHEL7.txt 
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.1 Ensure source routed packets are not accepted (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.2 Ensure ICMP redirects are not accepted (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.3 Ensure secure ICMP redirects are not accepted (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.4 Ensure suspicious packets are logged (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.5 Ensure broadcast ICMP requests are ignored (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.6 Ensure bogus ICMP responses are ignored (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.7 Ensure Reverse Path Filtering is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.2.8 Ensure TCP SYN Cookies is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "3.3 IPv6" >> SEC_AUDIT_RHEL7.txt 
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.3.1 Ensure IPv6 router advertisements are not accepted (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.3.2 Ensure IPv6 redirects are not accepted (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.3.3 Ensure IPv6 is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "3.4 TCP Wrappers" >> SEC_AUDIT_RHEL7.txt 
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.4.1 Ensure TCP Wrappers is installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.4.2 Ensure /etc/hosts.allow is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.4.3 Ensure /etc/hosts.deny is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.4.4 Ensure permissions on /etc/hosts.allow are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.4.5 Ensure permissions on /etc/hosts.deny are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "3.5 Uncommon Network Protocols" >> SEC_AUDIT_RHEL7.txt 
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.5.1 Ensure DCCP is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.5.2 Ensure SCTP is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.5.3 Ensure RDS is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.5.4 Ensure TIPC is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-echo "3.6 Firewall Configuration" >> SEC_AUDIT_RHEL7.txt 
-echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.6.1 Ensure iptables is installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.6.2 Ensure default deny firewall policy (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.6.3 Ensure loopback traffic is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.6.4 Ensure outbound and established connections are configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.6.5 Ensure firewall rules exist for all open ports (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "3.7 Ensure wireless interfaces are disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
-echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "" >> SEC_AUDIT_RHEL7.txt
-
-
 echo "**************************************************************************************************************************" >> SEC_AUDIT_RHEL7.txt 
 echo "4 Logging and Auditing" >> SEC_AUDIT_RHEL7.txt
 echo "**************************************************************************************************************************" >> SEC_AUDIT_RHEL7.txt 
@@ -741,31 +536,43 @@ echo "==========================================================================
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.1 Configure Data Retention" >> SEC_AUDIT_RHEL7.txt 
-
+grep max_log_file /etc/audit/auditd.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.1.1 Ensure audit log storage size is configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+echo "Verify output matches: space_left_action = email" >> SEC_AUDIT_RHEL7.txt 
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep space_left_action /etc/audit/auditd.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Verify output matches: action_mail_acct = root" >> SEC_AUDIT_RHEL7.txt 
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep action_mail_acct /etc/audit/auditd.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+echo "Verify output matches: admin_space_left_action = halt" >> SEC_AUDIT_RHEL7.txt 
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep admin_space_left_action /etc/audit/auditd.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "4.1.1.2 Ensure system is disabled when audit logs are full (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+echo "4.1.1.2 Ensure system is disabled when audit logs are full (Scored)" >> SEC_AUDIT_RHEL7.txt
+echo "Verify output matches: max_log_file_action = keep_logs" >> SEC_AUDIT_RHEL7.txt 
+grep max_log_file_action /etc/audit/auditd.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.1.3 Ensure audit logs are not automatically deleted (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+echo "Verify output matches: qq" >> SEC_AUDIT_RHEL7.txt 
+grep max_log_file_action /etc/audit/auditd.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.2 Ensure auditd service is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+systemctl is-enabled auditd | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
@@ -1461,5 +1268,5 @@ sleep 5
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
 
-##### UN-FINISHED #####
+
 
