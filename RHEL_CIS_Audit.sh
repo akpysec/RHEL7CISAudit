@@ -498,14 +498,33 @@ echo "2.3 Service Clients" >> SEC_AUDIT_RHEL7.txt
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
 echo "2.3.1 Ensure NIS Client is not installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
+rpm -q ypbind | grep . >> SEC_AUDIT_RHEL7.txt || echo 'NIS Client is not installed - PASS' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.3.2 Ensure rsh client is not installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
+rpm -q rsh | grep . >> SEC_AUDIT_RHEL7.txt || echo 'RSH Client is not installed - PASS' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.3.3 Ensure talk client is not installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
+rpm -q talk | grep . >> SEC_AUDIT_RHEL7.txt || echo 'TALK Client is not installed - PASS' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.3.4 Ensure telnet client is not installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
+rpm -q telnet | grep . >> SEC_AUDIT_RHEL7.txt || echo 'TELNET Client is not installed - PASS' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "2.3.5 Ensure LDAP client is not installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
+rpm -q openldap-clients | grep . >> SEC_AUDIT_RHEL7.txt || echo 'LDAP Client is not installed - PASS' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 
 
@@ -516,82 +535,200 @@ echo "**************************************************************************
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "3.1 Network Parameters (Host Only)" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
-
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.1.1 Ensure IP forwarding is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
+sysctl net.ipv4.ip_forward | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+grep "net\.ipv4\.ip_forward" /etc/sysctl.conf /etc/sysctl.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.1.2 Ensure packet redirect sending is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
+sysctl net.ipv4.conf.all.send_redirects | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+sysctl net.ipv4.conf.default.send_redirects | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep "net\.ipv4\.conf\.all\.send_redirects" /etc/sysctl.conf /etc/sysctl.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep "net\.ipv4\.conf\.default\.send_redirects" /etc/sysctl.conf /etc/sysctl.d/* | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "3.2 Network Parameters (Host and Router)" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.1 Ensure source routed packets are not accepted (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.2 Ensure ICMP redirects are not accepted (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.3 Ensure secure ICMP redirects are not accepted (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.4 Ensure suspicious packets are logged (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.5 Ensure broadcast ICMP requests are ignored (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.6 Ensure bogus ICMP responses are ignored (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.7 Ensure Reverse Path Filtering is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.2.8 Ensure TCP SYN Cookies is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "3.3 IPv6" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.3.1 Ensure IPv6 router advertisements are not accepted (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.3.2 Ensure IPv6 redirects are not accepted (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.3.3 Ensure IPv6 is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "3.4 TCP Wrappers" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.4.1 Ensure TCP Wrappers is installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.4.2 Ensure /etc/hosts.allow is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.4.3 Ensure /etc/hosts.deny is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.4.4 Ensure permissions on /etc/hosts.allow are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.4.5 Ensure permissions on /etc/hosts.deny are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "3.5 Uncommon Network Protocols" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.5.1 Ensure DCCP is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.5.2 Ensure SCTP is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.5.3 Ensure RDS is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.5.4 Ensure TIPC is disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "3.6 Firewall Configuration" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.6.1 Ensure iptables is installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.6.2 Ensure default deny firewall policy (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.6.3 Ensure loopback traffic is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.6.4 Ensure outbound and established connections are configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.6.5 Ensure firewall rules exist for all open ports (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "3.7 Ensure wireless interfaces are disabled (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 
 echo "**************************************************************************************************************************" >> SEC_AUDIT_RHEL7.txt 
@@ -602,47 +739,131 @@ echo "==========================================================================
 echo "4.1 Configure System Accounting (auditd)" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.1 Configure Data Retention" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.1.1 Ensure audit log storage size is configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.1.2 Ensure system is disabled when audit logs are full (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.1.3 Ensure audit logs are not automatically deleted (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.2 Ensure auditd service is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.4 Ensure events that modify date and time information are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.5 Ensure events that modify user/group information are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.6 Ensure events that modify the system's network environment are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.8 Ensure login and logout events are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.9 Ensure session initiation information is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.10 Ensure discretionary access control permission modification events are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.11 Ensure unsuccessful unauthorized file access attempts are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.12 Ensure use of privileged commands is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.13 Ensure successful file system mounts are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.14 Ensure file deletion events by users are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.15 Ensure changes to system administration scope (sudoers) is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.17 Ensure kernel module loading and unloading is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.18 Ensure the audit configuration is immutable (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 
 
@@ -650,35 +871,95 @@ echo "==========================================================================
 echo "4.2 Configure Logging" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1 Configure rsyslog" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.1 Ensure rsyslog Service is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.2 Ensure logging is configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.3 Ensure rsyslog default file permissions configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.4 Ensure rsyslog is configured to send logs to a remote log host (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.5 Ensure remote rsyslog messages are only accepted on designated log hosts. (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2 Configure syslog-ng" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2.1 Ensure syslog-ng service is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2.2 Ensure logging is configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2.3 Ensure syslog-ng default file permissions configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2.4 Ensure syslog-ng is configured to send logs to a remote loghost (Not Scored)" >> SEC_AUDIT_RHEL7.txt  
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2.5 Ensure remote syslog-ng messages are only accepted ondesignated log hosts (Not Scored)" >> SEC_AUDIT_RHEL7.txt  
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.3 Ensure rsyslog or syslog-ng is installed (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.4 Ensure permissions on all logfiles are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.3 Ensure logrotate is configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 
 
@@ -690,95 +971,251 @@ echo "==========================================================================
 echo "5.1 Configure cron" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.1 Ensure cron daemon is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.2 Ensure permissions on /etc/crontab are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.3 Ensure permissions on /etc/cron.hourly are configured(Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.4 Ensure permissions on /etc/cron.daily are configured(Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.5 Ensure permissions on /etc/cron.weekly are configured(Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.6 Ensure permissions on /etc/cron.monthly are configured(Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.7 Ensure permissions on /etc/cron.d are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.1.8 Ensure at/cron is restricted to authorized users (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "5.2 SSH Server Configuration" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured(Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.2 Ensure SSH Protocol is set to 2 (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.3 Ensure SSH LogLevel is set to INFO (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.4 Ensure SSH X11 forwarding is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.5 Ensure SSH MaxAuthTries is set to 4 or less (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.6 Ensure SSH IgnoreRhosts is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.7 Ensure SSH HostbasedAuthentication is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.8 Ensure SSH root login is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.9 Ensure SSH PermitEmptyPasswords is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.10 Ensure SSH PermitUserEnvironment is disabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.11 Ensure only approved MAC algorithms are used (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.12 Ensure SSH Idle Timeout Interval is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.13 Ensure SSH LoginGraceTime is set to one minute or less(Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.14 Ensure SSH access is limited (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.2.15 Ensure SSH warning banner is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "5.3 Configure PAM" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.3.1 Ensure password creation requirements are configured(Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.3.2 Ensure lockout for failed password attempts is configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.3.3 Ensure password reuse is limited (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.3.4 Ensure password hashing algorithm is SHA-512 (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "5.4 User Accounts and Environment" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.1 Set Shadow Password Suite Parameters" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.1.1 Ensure password expiration is 365 days or less (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.1.2 Ensure minimum days between password changes is 7 or more (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.1.3 Ensure password expiration warning days is 7 or more (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.1.4 Ensure inactive password lock is 30 days or less (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.1.5 Ensure all users last password change date is in the past (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.2 Ensure system accounts are non-login (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.3 Ensure default group for the root account is GID 0 (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.4 Ensure default user umask is 027 or more restrictive (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.4.5 Ensure default user shell timeout is 900 seconds or less (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.5 Ensure root login is restricted to system console (Not Scored)" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "5.6 Ensure access to the su command is restricted (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "**************************************************************************************************************************" >> SEC_AUDIT_RHEL7.txt 
 echo "6 System Maintenance" >> SEC_AUDIT_RHEL7.txt
@@ -788,75 +1225,207 @@ echo "==========================================================================
 echo "6.1 System File Permissions" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.1 Audit system file permissions (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.2 Ensure permissions on /etc/passwd are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.3 Ensure permissions on /etc/shadow are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.4 Ensure permissions on /etc/group are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.5 Ensure permissions on /etc/gshadow are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.6 Ensure permissions on /etc/passwd- are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.7 Ensure permissions on /etc/shadow- are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.8 Ensure permissions on /etc/group- are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.9 Ensure permissions on /etc/gshadow- are configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.10 Ensure no world writable files exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.11 Ensure no unowned files or directories exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.12 Ensure no ungrouped files or directories exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.13 Audit SUID executables (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.1.14 Audit SGID executables (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "6.2 User and Group Settings" >> SEC_AUDIT_RHEL7.txt 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.1 Ensure password fields are not empty (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.2 Ensure no legacy "+"entries exist in /etc/passwd (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.3 Ensure no legacy "+"entries exist in /etc/shadow (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.4 Ensure no legacy "+"entries exist in /etc/group (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.5 Ensure root is the only UID 0 account (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.6 Ensure root PATH Integrity (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.7 Ensure all users' home directories exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.8 Ensure users' home directories permissions are 750 or more restrictive (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.9 Ensure users own their home directories (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.10 Ensure users' dot files are not group or world writable (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.11 Ensure no users have .forward files (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.12 Ensure no users have .netrc files (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.13 Ensure users' .netrc Files are not group or world accessible (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.14 Ensure no users have .rhosts files (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.15 Ensure all groups in /etc/passwd exist in /etc/group (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.16 Ensure no duplicate UIDs exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.17 Ensure no duplicate GIDs exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.18 Ensure no duplicate user names exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
 
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "6.2.19 Ensure no duplicate group names exist (Scored)" >> SEC_AUDIT_RHEL7.txt 
+
+echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 
 
 echo "**************************************************************************************************************************" >> SEC_AUDIT_RHEL7.txt 
@@ -865,6 +1434,7 @@ echo "**************************************************************************
 
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "7.1 Active Directory Integration" >> SEC_AUDIT_RHEL7.txt
+echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 service vasd status | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value found' >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
@@ -885,9 +1455,11 @@ echo "==========================================================================
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 echo "7.2 systemctl serivce list" >> SEC_AUDIT_RHEL7.txt 
 echo "" >> SEC_AUDIT_RHEL7.txt
+sleep 2
 systemctl >> SEC_AUDIT_RHEL7.txt
 sleep 5
 echo "==========================================================================================================================" >> SEC_AUDIT_RHEL7.txt
 
 
+##### UN-FINISHED #####
 
