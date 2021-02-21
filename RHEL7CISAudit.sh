@@ -578,97 +578,131 @@ echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep "^\s*linux" /boot/grub2/grub.cfg | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.4 Ensure events that modify date and time information are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep time-change /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep time-change | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "4.1.5 Ensure events that modify user/group information are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+echo "4.1.5 Ensure events that modify user/group information are collected (Scored)" >> SEC_AUDIT_RHEL7.txt
+echo "Verify output matches:
+-w /etc/group -p wa -k identity
+-w /etc/passwd -p wa -k identity
+-w /etc/gshadow -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/security/opasswd -p wa -k identity
+"  >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep identity /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep identity | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.6 Ensure events that modify the system's network environment are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
+grep system-locale /etc/audit/audit.rules | grep identity | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep system-locale | grep identity | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep MAC-policy /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.8 Ensure login and logout events are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep logins /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
-echo "4.1.9 Ensure session initiation information is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
+echo "4.1.9 Ensure session initiation information is collected (Scored)" >> SEC_AUDIT_RHEL7.txt
+echo "Verify output of both matches:" >> SEC_AUDIT_RHEL7.txt
+echo "-w /var/run/utmp -p wa -k session" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep session /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep session | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 
+echo "Verify output of both matches:" >> SEC_AUDIT_RHEL7.txt
+echo "-w /var/log/wtmp -p wa -k logins" >> SEC_AUDIT_RHEL7.txt
+echo "-w /var/log/btmp -p wa -k logins" >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
+grep logins /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep logins | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.10 Ensure discretionary access control permission modification events are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep perm_mod /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep perm_mod | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.11 Ensure unsuccessful unauthorized file access attempts are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep access /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep access | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.12 Ensure use of privileged commands is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+echo "Manual Check" >> SEC_AUDIT_RHEL7.txt
+# find <partition> -xdev \( -perm -4000 -o -perm -2000 \) -type f | awk '{print \"-a always,exit -F path=" $1 " -F perm=x -F auid>=1000 -F auid!=4294967295 \ -k privileged" }
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.13 Ensure successful file system mounts are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep mounts /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep mounts | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+echo "" >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.14 Ensure file deletion events by users are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep delete /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep delete | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.15 Ensure changes to system administration scope (sudoers) is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep scope /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep scope | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep actions /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep actions | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.17 Ensure kernel module loading and unloading is collected (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep modules /etc/audit/audit.rules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+auditctl -l | grep modules | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.1.18 Ensure the audit configuration is immutable (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+echo "Check if '-e 2' is present"
+grep "^\s*[^#]" /etc/audit/audit.rules | tail | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
@@ -680,49 +714,49 @@ echo "==========================================================================
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1 Configure rsyslog" >> SEC_AUDIT_RHEL7.txt 
-
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.1 Ensure rsyslog Service is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+systemctl is-enabled rsyslog | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.2 Ensure logging is configured (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+ls -l /var/log/ | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.3 Ensure rsyslog default file permissions configured (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.4 Ensure rsyslog is configured to send logs to a remote log host (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.1.5 Ensure remote rsyslog messages are only accepted on designated log hosts. (Not Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+grep '$ModLoad imtcp' /etc/rsyslog.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
+grep '$InputTCPServerRun' /etc/rsyslog.conf | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2 Configure syslog-ng" >> SEC_AUDIT_RHEL7.txt 
-
+systemctl is-enabled syslog-ng | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "4.2.2.1 Ensure syslog-ng service is enabled (Scored)" >> SEC_AUDIT_RHEL7.txt 
-
+ls -l /var/log/ | grep . >> SEC_AUDIT_RHEL7.txt || echo 'No Value Found' >> SEC_AUDIT_RHEL7.txt
 echo "--------------------------------------------------------------------------------------------------------------------------" >> SEC_AUDIT_RHEL7.txt
 echo "" >> SEC_AUDIT_RHEL7.txt
 
